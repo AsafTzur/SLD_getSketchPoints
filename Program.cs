@@ -21,11 +21,13 @@ namespace SLD_getSketchPoints
             object[] sketchPointArray;
             Double x;
             Double y;
+            Double z;
             string s;
 
             myModel = (ModelDoc2)swApp.ActiveDoc;
             SelMgr = (SelectionMgr)myModel.SelectionManager;
             myPart = (PartDoc)myModel;
+            myFeature = (Feature)myPart.FeatureByName("Points");
             myFeature = (Feature)myPart.FeatureByName("Points");
             mySketch = (Sketch)myFeature.GetSpecificFeature2();
 
@@ -37,10 +39,10 @@ namespace SLD_getSketchPoints
                 s = "";
                 swSketchPoint = (SketchPoint)sketchPointArray[i];
                 swSketchPoint.GetCoords();
-                swSketchPoint.GetCoords();
                 x = swSketchPoint.X*1000;
                 y = swSketchPoint.Y*1000;
-                s = string.Concat(x.ToString(), ", ", y.ToString());
+                z = swSketchPoint.Z * 1000;
+                s = string.Concat(x.ToString(), ", ", y.ToString(),", ", z.ToString());
                 sl.WriteLine(s);
             }
 
